@@ -1,76 +1,94 @@
-# Atomberg AI Agent: YouTube Share of Voice Analysis
+# Atomberg AI Agent: YouTube Share of Voice Dashboard
 
-This project is an AI agent designed to analyze YouTube search results to quantify the Share of Voice (SoV) for Atomberg and its competitors in the 'smart fan' market, as per the AI/ML internship problem statement.
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://justcode-for-fun.streamlit.app/)
 
-## Features
+An interactive web application that analyzes YouTube search results to quantify the Share of Voice (SoV) for Atomberg and its competitors, built for the Atomberg AI/ML internship challenge.
 
--   **Data Collection**: Searches YouTube for specified keywords and scrapes data from the top N results.
--   **Brand Mention Analysis**: Identifies mentions of Atomberg and key competitors in video titles, descriptions, and comments.
--   **Engagement-Weighted SoV**: Calculates a custom "Engagement-Weighted Share of Voice" (E-SoV) metric that prioritizes mentions in high-engagement videos.
--   **Sentiment Analysis**: Performs sentiment analysis on comments mentioning each brand to calculate a "Share of Positive Voice" (SoPV).
--   **Report Generation**: Automatically generates and saves pie charts (for E-SoV) and bar charts (for SoPV) for each keyword.
+---
 
-## Setup Instructions
+## 🚀 Live Demo
 
-**1. Clone the Repository**
+You can access the live, deployed application here:
+
+**[https://justcode-for-fun.streamlit.app/](https://justcode-for-fun.streamlit.app/)**
+
+---
+
+## 🎯 Project Overview
+
+This project is an AI agent designed to provide actionable market intelligence by:
+
+-   Searching YouTube for user-defined keywords (e.g., 'smart fan', 'BLDC fan').
+-   Scraping and analyzing data from the top N search results.
+-   Calculating an **Engagement-Weighted Share of Voice (E-SoV)** to measure market influence accurately.
+-   Performing **Ensemble Sentiment Analysis** to determine the Share of Positive Voice (SoPV).
+-   Displaying all findings in an interactive and easy-to-understand dashboard.
+
+---
+
+## ✨ Features
+
+-   **Dynamic User Controls**: Configure keywords and the number of videos to analyze directly in the app.
+-   **Engagement-Weighted SoV**: A custom metric that prioritizes mentions in high-engagement videos for a more accurate SoV score.
+-   **Ensemble Sentiment Analysis**: Combines VADER and TextBlob models for a more robust and nuanced understanding of user sentiment.
+-   **Interactive Visualizations**: Uses Plotly to create modern, interactive charts that are easy to explore.
+-   **Performance Caching**: Caches analysis results to provide a fast and smooth user experience on repeated queries.
+-   **Secure API Key Management**: Uses Streamlit Secrets to keep API keys safe in the deployed application.
+
+---
+
+## 🛠️ Tech Stack
+
+| Technology              | Purpose                                                              |
+| :---------------------- | :------------------------------------------------------------------- |
+| **Python** | Core programming language for the backend and analysis pipeline.     |
+| **Streamlit** | Framework used to build and deploy the interactive web dashboard.    |
+| **YouTube Data API v3** | For reliable and compliant collection of YouTube search and video data. |
+| **Pandas** | For efficient data manipulation, cleaning, and aggregation.          |
+| **VADER & TextBlob** | AI libraries used for the ensemble sentiment analysis model.         |
+| **Plotly** | For creating interactive, modern data visualizations.                |
+| **Git & GitHub** | For version control and as the source for deployment.                |
+
+---
+
+## 🔧 Setup & Local Execution
+
+### Prerequisites
+
+-   Python 3.8+
+-   A YouTube Data API v3 Key
+
+### Installation
+
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/ramjassahu/justcode.git](https://github.com/ramjassahu/justcode.git)
+    cd justcode
+    ```
+
+2.  **Create a virtual environment (recommended):**
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # On Windows: venv\Scripts\activate
+    ```
+
+3.  **Install dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4.  **Add your API Key (for local use):**
+    To run the app locally, you need to create a secrets file.
+    -   Create a folder named `.streamlit` in your project's root directory.
+    -   Inside it, create a file named `secrets.toml`.
+    -   Add your API key to this file in the following format:
+        ```toml
+        API_KEY = "your_youtube_api_key_goes_here"
+        ```
+
+### Running the App
+
+Once the setup is complete, run the following command in your terminal:
 
 ```bash
-git clone <your-repo-url>
-cd atomberg_sov_project
-```
-
-**2. Create a Virtual Environment**
-
-It's highly recommended to use a virtual environment to manage dependencies.
-
-```bash
-# For macOS/Linux
-python3 -m venv venv
-source venv/bin/activate
-
-# For Windows
-python -m venv venv
-.\venv\Scripts\activate
-```
-
-**3. Install Dependencies**
-
-Install all the required Python libraries from the `requirements.txt` file.
-
-```bash
-pip install -r requirements.txt
-```
-
-**4. Add Your API Key**
-
-You need a YouTube Data API v3 key from the Google Cloud Console.
-
--   Open the `config.py` file.
--   Find the line `API_KEY = "YOUR_API_KEY"`.
--   Replace `"YOUR_API_KEY"` with the actual key you generated.
-
-## How to Run
-
-Once the setup is complete, you can run the entire analysis pipeline with a single command:
-
-```bash
-python main.py
-```
-
-The script will:
-1.  Fetch data from YouTube (this may take a few minutes).
-2.  Save the raw data to `output/youtube_raw_data.csv`.
-3.  Analyze the data for mentions and sentiment.
-4.  Save the detailed analysis to `output/youtube_analysis_data.csv`.
-5.  Print the final E-SoV and SoPV metrics to your console.
-6.  Save the visual charts as PNG files in the `output/` directory.
-
-## Project Structure
-
--   `main.py`: The main entry point to run the application.
--   `config.py`: Configuration file for API keys, keywords, competitors, and scoring weights.
--   `youtube_scraper.py`: Module responsible for fetching all data from the YouTube API.
--   `analyzer.py`: Module for performing the core data analysis (mention counting, sentiment analysis, SoV calculation).
--   `report_generator.py`: Module to create and save the data visualizations.
--   `requirements.txt`: A list of all project dependencies.
--   `output/`: A directory where all output files (data and charts) are saved.
+streamlit run app.py
