@@ -1,0 +1,9 @@
+google-api-python-client
+pandas
+vaderSentiment
+matplotlib
+seaborn
+tqdm
+streamlit
+textblob
+plotly
